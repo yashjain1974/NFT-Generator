@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="input.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
+    <title>NFT convertor</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <style>
+        body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+#l1_image_input {
+    display: none;
+}
+.custom-file-upload{
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 2vh;
+}
+#display_image{
+    margin-top: 10vh;
+    width: 50vh;
+    height:  50vh;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#convert-button{
+    margin-top: 4vh;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#convert-button:disabled{
+    margin-top: 4vh;
+    background-color: #008CBA;
+    opacity: .6;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor:default;
+}
+#final{
+    text-align: center;
+    align-self: center;
+}
+#final_button{
+    text-align: center;
+    align-self: center;
+}
+    </style>
+  </head>
+  <body>
+
+     <div id="display_image"></div>
+     <div id="container"></div>
+    <label for="l1_image_input" class="custom-file-upload">
+        <i class="fas fa-chevron-circle-up"></i> Upload Image
+    </label>
+    <form action="/" role="form" method="post" enctype="multipart/form-data">
+        <input type="file" id="l1_image_input" name="l1_uploaded_image" accept="image/*"/>
+        <input type="submit" value="Convert" id="convert-button">
+
+        
+        
+    </form>
+    
+
+    <script>
+        const l1_image_input = document.querySelector("#l1_image_input");
+        
+       
+var uploaded_image;
+
+
+//Defining a listener for our button, specifically, an onclick handler
+ 
+l1_image_input.addEventListener('change', function() {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    uploaded_image = reader.result;
+    document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+let number1 = document.getElementById("l1_image_input").value;
+document.getElementById("Container").innerHTML = `<table>
+  <tr>
+    <th>Num1</th>
+    <th>Num2</th>
+    <th>String</th>
+  </tr>
+  <tr>
+    <td>${number1}</td>
+  </tr>
+</table>`
+
+
+$(document).ready(
+    function(){
+        $('input:file').change(
+            function(){
+                if ($(this).val()) {
+                    $('input:submit').attr('disabled',false); 
+                } 
+            }
+        );
+    }
+);
+
+
+    </script>
+</html>
